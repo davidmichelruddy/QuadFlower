@@ -1,40 +1,27 @@
-var shapes = [];
-var r;
+var foo;
+var numLeaves = 200;
+var leaves = [];
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
-  r = random(100);
-  for (var i = 0; i < r; i++) {
-    var s = new Shape();
-    shapes.push(s);
+ createCanvas(windowWidth, windowHeight);
+ ellipseMode(CENTER);
+ angleMode(DEGREES);
+ for (var i = 0; i < numLeaves; i++) {
+  var leaf = new Particle(height/3);
+  leaves.push(leaf);
+ }
+ translate(width/2,height/2);
+ for (var j = 0; j < leaves.length; j++) {
+   leaves[j].show();
   }
-  translate(windowWidth/2, windowHeight/2);
-  shapes.forEach(function(shape, i){
-    push();
-    fill(...shape.c);
-    shape.make();
-    pop();
-    rotate(TWO_PI * i /shapes.length);
-  });
-  ellipse(0, 0, 20, 20);
+  ellipse(0,0,20,20);
 }
 
 function draw() {
-}
 
-function Shape() {
-  this.vals = [],
-  this.c = [random(255),random(255),random(255),random(255)],
-
-  this.fillVals = function() {
-    for (var i = 0; i < 6; i++) {
-      this.vals.push(random(300));
-    };
-  },
-
-  this.make = function() {
-    quad(0,0, ...this.vals);
-  },
-
-  this.fillVals();
+  // beginShape();
+  // vertex(0, 0);
+  // bezierVertex(random(100), 0, random(100), random(100), random(100), random(100));
+  // bezierVertex(random(100), random(100), random(100), random(100), 0, 0);
+  // endShape();
 }
